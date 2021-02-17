@@ -19,14 +19,13 @@ export default {
         }
     },
     functional: true,
-    render(h, ctx) {
-        const size = parseInt(ctx.props.size) + 'px';
-        const attrs = ctx.data.attrs || {};
+    setup(props, ctx) {
+        const size = parseInt(props.size) + 'px';
+        const attrs = ctx.attrs || {};
         attrs.width = attrs.width || size;
         attrs.height = attrs.height || size;
-        ctx.data.attrs = attrs;
       
-        return ${svg.replace(/<svg([^>]+)>/, '<svg$1 {...ctx.data}>')}
+        return ${svg.replace(/<svg([^>]+)>/, '<svg$1 {...attrs}>')}
     }
 }
 `.trim();

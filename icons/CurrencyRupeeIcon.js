@@ -1,4 +1,4 @@
-import _mergeJSXProps from "babel-helper-vue-jsx-merge-props";
+import { mergeProps as _mergeProps, createTextVNode as _createTextVNode, createVNode as _createVNode } from "vue";
 export default {
   name: 'CurrencyRupeeIcon',
   props: {
@@ -8,42 +8,34 @@ export default {
     }
   },
   functional: true,
-  render: function render(h, ctx) {
-    var size = parseInt(ctx.props.size) + 'px';
-    var attrs = ctx.data.attrs || {};
+  setup: function setup(props, ctx) {
+    var h = this.$createElement;
+    var size = parseInt(props.size) + 'px';
+    var attrs = ctx.attrs || {};
     attrs.width = attrs.width || size;
     attrs.height = attrs.height || size;
-    ctx.data.attrs = attrs;
-    return h("svg", _mergeJSXProps([{
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "24",
-        height: "24",
-        viewBox: "0 0 24 24",
-        "stroke-width": "2",
-        stroke: "currentColor",
-        fill: "none",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round"
-      },
-      "class": "icon icon-tabler icon-tabler-currency-rupee"
-    }, ctx.data]), ["   ", h("path", {
-      attrs: {
-        stroke: "none",
-        d: "M0 0h24v24H0z",
-        fill: "none"
-      }
-    }), "   ", h("path", {
-      attrs: {
-        d: "M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6"
-      }
-    }), "   ", h("line", {
-      attrs: {
-        x1: "7",
-        y1: "9",
-        x2: "18",
-        y2: "9"
-      }
-    }), " "]);
+    return _createVNode("svg", _mergeProps({
+      "xmlns": "http://www.w3.org/2000/svg",
+      "class": "icon icon-tabler icon-tabler-currency-rupee",
+      "width": "24",
+      "height": "24",
+      "viewBox": "0 0 24 24",
+      "stroke-width": "2",
+      "stroke": "currentColor",
+      "fill": "none",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }, attrs), [_createTextVNode("   "), _createVNode("path", {
+      "stroke": "none",
+      "d": "M0 0h24v24H0z",
+      "fill": "none"
+    }, null), _createTextVNode("   "), _createVNode("path", {
+      "d": "M18 5h-11h3a4 4 0 0 1 0 8h-3l6 6"
+    }, null), _createTextVNode("   "), _createVNode("line", {
+      "x1": "7",
+      "y1": "9",
+      "x2": "18",
+      "y2": "9"
+    }, null), _createTextVNode(" ")]);
   }
 };

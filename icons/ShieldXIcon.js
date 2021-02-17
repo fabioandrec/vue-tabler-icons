@@ -1,4 +1,4 @@
-import _mergeJSXProps from "babel-helper-vue-jsx-merge-props";
+import { mergeProps as _mergeProps, createTextVNode as _createTextVNode, createVNode as _createVNode } from "vue";
 export default {
   name: 'ShieldXIcon',
   props: {
@@ -8,39 +8,31 @@ export default {
     }
   },
   functional: true,
-  render: function render(h, ctx) {
-    var size = parseInt(ctx.props.size) + 'px';
-    var attrs = ctx.data.attrs || {};
+  setup: function setup(props, ctx) {
+    var h = this.$createElement;
+    var size = parseInt(props.size) + 'px';
+    var attrs = ctx.attrs || {};
     attrs.width = attrs.width || size;
     attrs.height = attrs.height || size;
-    ctx.data.attrs = attrs;
-    return h("svg", _mergeJSXProps([{
-      attrs: {
-        xmlns: "http://www.w3.org/2000/svg",
-        width: "24",
-        height: "24",
-        viewBox: "0 0 24 24",
-        "stroke-width": "2",
-        stroke: "currentColor",
-        fill: "none",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round"
-      },
-      "class": "icon icon-tabler icon-tabler-shield-x"
-    }, ctx.data]), ["   ", h("path", {
-      attrs: {
-        stroke: "none",
-        d: "M0 0h24v24H0z",
-        fill: "none"
-      }
-    }), "   ", h("path", {
-      attrs: {
-        d: "M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"
-      }
-    }), "   ", h("path", {
-      attrs: {
-        d: "M10 10l4 4m0 -4l-4 4"
-      }
-    }), " "]);
+    return _createVNode("svg", _mergeProps({
+      "xmlns": "http://www.w3.org/2000/svg",
+      "class": "icon icon-tabler icon-tabler-shield-x",
+      "width": "24",
+      "height": "24",
+      "viewBox": "0 0 24 24",
+      "stroke-width": "2",
+      "stroke": "currentColor",
+      "fill": "none",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }, attrs), [_createTextVNode("   "), _createVNode("path", {
+      "stroke": "none",
+      "d": "M0 0h24v24H0z",
+      "fill": "none"
+    }, null), _createTextVNode("   "), _createVNode("path", {
+      "d": "M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"
+    }, null), _createTextVNode("   "), _createVNode("path", {
+      "d": "M10 10l4 4m0 -4l-4 4"
+    }, null), _createTextVNode(" ")]);
   }
 };
