@@ -1,20 +1,21 @@
-import { mergeProps as _mergeProps, createTextVNode as _createTextVNode, createVNode as _createVNode } from "vue";
+import { createVNode, mergeProps, createTextVNode } from "vue";
 export default {
   name: 'DatabaseOffIcon',
   props: {
     size: {
       type: String,
-      default: '24'
+      default: '24',
+      validator: s => !isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length - 1)) && s.slice(-1) === 'x'
     }
   },
-  functional: true,
-  setup: function setup(props, ctx) {
-    var h = this.$createElement;
-    var size = parseInt(props.size) + 'px';
-    var attrs = ctx.attrs || {};
+
+  setup(props, ctx) {
+    const size = props.size.slice(-1) === 'x' ? props.size.slice(0, props.size.length - 1) + 'em' : parseInt(props.size) + 'px';
+    const attrs = { ...ctx.attrs
+    };
     attrs.width = attrs.width || size;
     attrs.height = attrs.height || size;
-    return _createVNode("svg", _mergeProps({
+    return () => createVNode("svg", mergeProps({
       "xmlns": "http://www.w3.org/2000/svg",
       "class": "icon icon-tabler icon-tabler-database-off",
       "width": "24",
@@ -25,21 +26,23 @@ export default {
       "fill": "none",
       "stroke-linecap": "round",
       "stroke-linejoin": "round"
-    }, attrs), [_createTextVNode("   "), _createVNode("path", {
+    }, { ...attrs
+    }), [createTextVNode("   "), createVNode("path", {
       "stroke": "none",
       "d": "M0 0h24v24H0z",
       "fill": "none"
-    }, null), _createTextVNode("   "), _createVNode("path", {
+    }), createTextVNode("   "), createVNode("path", {
       "d": "M12.983 8.978c3.955 -.182 7.017 -1.446 7.017 -2.978c0 -1.657 -3.582 -3 -8 -3c-1.661 0 -3.204 .19 -4.483 .515m-2.783 1.228c-.471 .382 -.734 .808 -.734 1.257c0 1.22 1.944 2.271 4.734 2.74"
-    }, null), _createTextVNode("   "), _createVNode("path", {
+    }), createTextVNode("   "), createVNode("path", {
       "d": "M4 6v6c0 1.657 3.582 3 8 3c.986 0 1.93 -.067 2.802 -.19m3.187 -.82c1.251 -.53 2.011 -1.228 2.011 -1.99v-6"
-    }, null), _createTextVNode("   "), _createVNode("path", {
+    }), createTextVNode("   "), createVNode("path", {
       "d": "M4 12v6c0 1.657 3.582 3 8 3c3.217 0 5.991 -.712 7.261 -1.74m.739 -3.26v-4"
-    }, null), _createTextVNode("   "), _createVNode("line", {
+    }), createTextVNode("   "), createVNode("line", {
       "x1": "3",
       "y1": "3",
       "x2": "21",
       "y2": "21"
-    }, null), _createTextVNode(" ")]);
+    }), createTextVNode(" ")]);
   }
+
 };

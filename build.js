@@ -16,16 +16,19 @@ export default {
         size: {
             type: String,
             default: '24',
+            validator: (s) => (!isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length -1)) && s.slice(-1) === 'x' )
         }
     },
-    functional: true,
     setup(props, ctx) {
-        const size = parseInt(props.size) + 'px';
-        const attrs = ctx.attrs || {};
+    	const size = props.size.slice(-1) === 'x'
+                ? props.size.slice(0, props.size.length -1) + 'em'
+                : parseInt(props.size) + 'px';
+    
+        const attrs = { ...ctx.attrs };
         attrs.width = attrs.width || size;
         attrs.height = attrs.height || size;
       
-        return ${svg.replace(/<svg([^>]+)>/, '<svg$1 {...attrs}>')}
+        return () => ${svg.replace(/<svg([^>]+)>/, '<svg$1 {...attrs}>')}
     }
 }
 `.trim();

@@ -1,20 +1,21 @@
-import { mergeProps as _mergeProps, createTextVNode as _createTextVNode, createVNode as _createVNode } from "vue";
+import { createVNode, mergeProps, createTextVNode } from "vue";
 export default {
   name: 'ShieldXIcon',
   props: {
     size: {
       type: String,
-      default: '24'
+      default: '24',
+      validator: s => !isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length - 1)) && s.slice(-1) === 'x'
     }
   },
-  functional: true,
-  setup: function setup(props, ctx) {
-    var h = this.$createElement;
-    var size = parseInt(props.size) + 'px';
-    var attrs = ctx.attrs || {};
+
+  setup(props, ctx) {
+    const size = props.size.slice(-1) === 'x' ? props.size.slice(0, props.size.length - 1) + 'em' : parseInt(props.size) + 'px';
+    const attrs = { ...ctx.attrs
+    };
     attrs.width = attrs.width || size;
     attrs.height = attrs.height || size;
-    return _createVNode("svg", _mergeProps({
+    return () => createVNode("svg", mergeProps({
       "xmlns": "http://www.w3.org/2000/svg",
       "class": "icon icon-tabler icon-tabler-shield-x",
       "width": "24",
@@ -25,14 +26,16 @@ export default {
       "fill": "none",
       "stroke-linecap": "round",
       "stroke-linejoin": "round"
-    }, attrs), [_createTextVNode("   "), _createVNode("path", {
+    }, { ...attrs
+    }), [createTextVNode("   "), createVNode("path", {
       "stroke": "none",
       "d": "M0 0h24v24H0z",
       "fill": "none"
-    }, null), _createTextVNode("   "), _createVNode("path", {
+    }), createTextVNode("   "), createVNode("path", {
       "d": "M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"
-    }, null), _createTextVNode("   "), _createVNode("path", {
+    }), createTextVNode("   "), createVNode("path", {
       "d": "M10 10l4 4m0 -4l-4 4"
-    }, null), _createTextVNode(" ")]);
+    }), createTextVNode(" ")]);
   }
+
 };
